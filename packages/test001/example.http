@@ -1,0 +1,68 @@
+GET http://localhost:5000/
+###
+GET http://localhost:5000/users?page=1&limit=5
+###
+POST  http://localhost:5000/insert
+###
+GET http://localhost:5000/user?page=1&limit=10
+
+
+###
+
+POST http://127.0.0.1:5000/register HTTP/1.1
+content-type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwicGFzc3dvcmQiOiIxMjM0NTYiLCJpYXQiOjE1MTYyMzkwMjJ9.UqHQ1Nu14ou1Q4KIJWrMxr1NKfPPvQqflN-RJzskYfk
+
+{
+"name":"John",
+"email":"j@t.com",
+"password":"123"
+}
+
+
+
+###
+
+
+
+# @name login
+POST http://127.0.0.1:5000/user/login HTTP/1.1
+content-type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwicGFzc3dvcmQiOiIxMjM0NTYiLCJpYXQiOjE1MTYyMzkwMjJ9.UqHQ1Nu14ou1Q4KIJWrMxr1NKfPPvQqflN-RJzskYfk
+
+{
+"id":10,
+"userName":"ts1",
+"password":"ts1"
+}
+
+###
+
+@id = {{login.response.body.$.id}}
+@authToken = {{login.response.headers.X-AuthToken}}
+
+POST http://127.0.0.1:5000/secured_api HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+"id":10,
+"userName":"ts1",
+"password":"ts1"
+}
+
+###
+POST http://127.0.0.1:5000/public_api HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+"id":10,
+"userName":"ts1",
+"password":"ts1"
+}
+
+###
+
+POST http://localhost:5000/upload/
+

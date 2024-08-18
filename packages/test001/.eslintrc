@@ -1,0 +1,7 @@
+{
+    "rules": {
+        "semi": ["error", "always"],
+        "parser": "babel-eslint"
+        // "quotes": ["error", "double"]
+    }
+}
