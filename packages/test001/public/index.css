@@ -1,0 +1,32 @@
+#container {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+#fileInput {}
+
+#btn {
+    margin: auto;
+    width: max-content;
+    padding-inline: 15px;
+    padding-block: 10px;
+    font-size: larger;
+    border: none;
+    background-color: darkblue;
+    color: white;
+    border-radius: 20px;
+
+}
