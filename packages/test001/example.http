@@ -15,25 +15,43 @@ content-type: application/json
 
 {
 "name":"John",
-"email":"j@t.com",
+"email":"j@tt.com",
 "password":"123"
 }
 
 
 
+
+
 ###
 
+POST http://127.0.0.1:5000/user/sendotp HTTP/1.1
+content-type: application/json
 
+{
+"email":"j@tt.com",
+"password":"123"
+}
 
+###
+
+POST http://127.0.0.1:5000/user/login_with_otp HTTP/1.1
+content-type: application/json
+
+{
+"email":"j@tt.com",
+"otp":"686448"
+}
+
+###
 # @name login
 POST http://127.0.0.1:5000/user/login HTTP/1.1
 content-type: application/json
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwicGFzc3dvcmQiOiIxMjM0NTYiLCJpYXQiOjE1MTYyMzkwMjJ9.UqHQ1Nu14ou1Q4KIJWrMxr1NKfPPvQqflN-RJzskYfk
 
 {
-"id":10,
-"userName":"ts1",
-"password":"ts1"
+"email":"j@tt.com",
+"password":"123"
 }
 
 ###
@@ -48,8 +66,25 @@ Authorization: Bearer {{authToken}}
 {
 "id":10,
 "userName":"ts1",
-"password":"ts1"
+"password":"ts1",
+"role": "admin"
 }
+
+
+###
+
+POST http://127.0.0.1:5000/secured_api HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+"id":10,
+"userName":"ts1",
+"password":"ts1",
+"role": "basic"
+
+}
+
 
 ###
 POST http://127.0.0.1:5000/public_api HTTP/1.1
@@ -61,7 +96,9 @@ Authorization: Bearer {{authToken}}
 "userName":"ts1",
 "password":"ts1"
 }
+###
 
+GET http://127.0.0.1:5000/getTest 
 ###
 
 POST http://localhost:5000/upload/

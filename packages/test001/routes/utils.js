@@ -40,5 +40,17 @@ const checkUser=(req, res, next)=> {
     }}
 
 
-    module.exports.checkUser= checkUser;
+    function authRole(role) {
+      
+      return (req, res, next) => {
+        if (req.body.role !== role) {
+          res.status(401)
+          return res.send('Not allowed')
+        }
+    
+        next()
+      }
+    }
 
+
+    module.exports = {checkUser,authRole}
