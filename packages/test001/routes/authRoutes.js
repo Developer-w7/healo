@@ -10,13 +10,19 @@ const AuthController = require("../controller/AuthController");
 
 const UserModel = require("../models/user");
 
+
+var faker = require('faker');
+
 // Registration Process
 
 authRouter.post("/register", async (req, res) => {
 
      try {
-      const { name, email, password } = req.body;
+      // const { name, email, password } = req.body;
+       const { name, email, password } = {name:faker.name.findName(),email:faker.internet.email(),password:"123"};
   
+
+       console.log(name)
       // Validate user input
       if (!(email && password && name)) {
         res.status(400).send("All input is required");

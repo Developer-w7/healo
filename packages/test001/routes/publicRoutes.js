@@ -45,4 +45,16 @@ publicRouter.post('/public_api', (req,res,next)=>{
 });
 
 
+// seeders
+
+// app.post('/register', async(req, res)=>{
+
+//   const resp=await studentEntry.save();
+
+//     res.statusCode = 200;
+//     res.setHeader('Content-Type', 'text/plain');
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.json({message:'Entry Succeed',resp});
+// });
+
 module.exports = publicRouter;

@@ -39,6 +39,7 @@ import {
   } from './src/common';
 
 import {main_image} from './src/images';
+import { HomeScreen } from './src/components/home';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -53,58 +54,6 @@ type RootStackParamList = {
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Profile'>;
 
-function HomeScreen({ navigation}:Props) {
-
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.white,
-  };
-
-
-
-  async function getData() {
-    const url = "https://8dc2-117-253-98-178.ngrok-free.app/dat";
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
-  
-      const json = await response.json();
-      console.log(json);
-      return json
-    } catch (error:any) {
-      console.error(error.message);
-    }
-  }
-  useEffect(()=>{
-    getData()
-  },[])
-  return (
-    <ScrollView
-    contentInsetAdjustmentBehavior="automatic"
-    style={backgroundStyle}>
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',flexDirection:"column" }}>
-        <Image
-          style={{width: '100%', height: 300, resizeMode: 'cover'}}
-          source={main_image}
-          height={200}
-        />
-        <>
-          <Text style={styles.heading}>Quick Actions</Text>
-        </>
-    <SafeAreaView style={backgroundStyle}>
-
-    <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-    </SafeAreaView>
-    </View>
-    </ScrollView>
-  );
-}
 
 function DetailsScreen({ navigation}:any) {
 

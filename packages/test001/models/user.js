@@ -1,7 +1,7 @@
 const Mongoose = require('mongoose');
-const CourseModel = require('./course.js');
-const CollegeModel = require('./college.js');
-const UserRoleModel = require('./user_role.js');
+// const CourseModel = require('./course.js');
+// const CollegeModel = require('./college.js');
+// const UserRoleModel = require('./user_role.js');
 var Schema = Mongoose.Schema;
 
 
@@ -11,7 +11,7 @@ const UserSchema = Mongoose.Schema(
       name: { type: String, default: null },
       email: { type: String, unique: true },
       password: { type: String },
-      token: { type: String }
+      // token: { type: String }
       // fullName: { type: String, default: "" },
       // userName: { type: String, default: "" },
       // course: { type: Mongoose.Schema.ObjectId,ref:CourseModel, required:true, index:true },
@@ -41,9 +41,9 @@ const UserSchema = Mongoose.Schema(
     let UserModel = Mongoose.model("users", UserSchema);
 
 
-    UserModel.getXPerson = (where) => {
-        return UserModel.findOne({  _id:"61d1b461b974ab6f0b816c73" });
-      };
+    // UserModel.getXPerson = (where) => {
+    //     return UserModel.findOne({  _id:"61d1b461b974ab6f0b816c73" });
+    //   };
 //    UserModel = Mongoose.model('User', UserSchema , { timestamps: true, collection: "user" });
 
     module.exports= UserModel;

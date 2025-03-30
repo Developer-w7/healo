@@ -1,6 +1,6 @@
 GET http://localhost:5000/
 ###
-GET http://localhost:5000/users?page=1&limit=5
+GET http://127.0.0.1:5000/users?page=1&limit=10
 ###
 POST  http://localhost:5000/insert
 ###
@@ -12,10 +12,11 @@ GET http://localhost:5000/user?page=1&limit=10
 POST http://127.0.0.1:5000/register HTTP/1.1
 content-type: application/json
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwicGFzc3dvcmQiOiIxMjM0NTYiLCJpYXQiOjE1MTYyMzkwMjJ9.UqHQ1Nu14ou1Q4KIJWrMxr1NKfPPvQqflN-RJzskYfk
+# Using Faker now
 
 {
 "name":"John",
-"email":"j@tt.com",
+"email":"j@tttt.com",
 "password":"123"
 }
 
@@ -24,23 +25,30 @@ content-type: application/json
 
 
 ###
+@email = "johan.brekke61@hotmail.com"
+@pass = "123"
 
+###
+
+# @name sendotp
 POST http://127.0.0.1:5000/user/sendotp HTTP/1.1
 content-type: application/json
 
 {
-"email":"j@tt.com",
-"password":"123"
+"email":{{email}},
+"password":{{pass}}
 }
 
 ###
+@authOTP = {{sendotp.response.body.$.otp}}
 
+###
 POST http://127.0.0.1:5000/user/login_with_otp HTTP/1.1
 content-type: application/json
 
 {
-"email":"j@tt.com",
-"otp":"686448"
+"email":{{email}},
+"otp":"{{authOTP}}"
 }
 
 ###
@@ -50,8 +58,8 @@ content-type: application/json
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwicGFzc3dvcmQiOiIxMjM0NTYiLCJpYXQiOjE1MTYyMzkwMjJ9.UqHQ1Nu14ou1Q4KIJWrMxr1NKfPPvQqflN-RJzskYfk
 
 {
-"email":"j@tt.com",
-"password":"123"
+"email":{{email}},
+"password":{{pass}}
 }
 
 ###
@@ -59,7 +67,7 @@ content-type: application/json
 @id = {{login.response.body.$.id}}
 @authToken = {{login.response.headers.X-AuthToken}}
 
-POST http://127.0.0.1:5000/secured_api HTTP/1.1
+POST http://127.0.0.1:5000/admin_home HTTP/1.1
 content-type: application/json
 Authorization: Bearer {{authToken}}
 
